@@ -9,7 +9,7 @@ ENV CONFD_PREFIX_KEY="/gocd" \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2 \
     LANG="en_US.utf8" \
     APP_HOME="/etc/ambari-server" \
-    APP_VERSION="2.6.1.0" \
+    APP_VERSION="2.7.3.0" \
     SCHEDULER_VOLUME="/opt/scheduler" \
     CONTAINER_NAME="ambari-server" \
     CONTAINER_AUHTOR="Sebastien LANGOUREAUX <linuxworkgroup@hotmail.com>" \
@@ -35,7 +35,7 @@ RUN curl -Lo /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/s6-
 # Install Ambari server
 RUN \
     curl -Lo /etc/yum.repos.d/ambari.repo "http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/${APP_VERSION}/ambari.repo"
-RUN yum install -y ambari-server postgresql java-1.8.0-openjdk-devel
+RUN yum install -y ambari-server postgresql java-1.8.0-openjdk-devel krb5-workstation krb5-libs
 RUN  ambari-server setup --silent --java-home=/usr/lib/jvm/java --database=postgres --databasehost=db --databaseport=5432 --databasename=ambari \
     --databaseusername=ambari --databasepassword=ambari
 
