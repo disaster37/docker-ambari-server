@@ -39,6 +39,9 @@ RUN yum install -y ambari-server postgresql java-1.8.0-openjdk-devel krb5-workst
 RUN  ambari-server setup --silent --java-home=/usr/lib/jvm/java --database=postgres --databasehost=db --databaseport=5432 --databasename=ambari \
     --databaseusername=ambari --databasepassword=ambari
 
+# Install Ambari agent, it's needed to enable kerberos
+RUN yum install -y ambari-agent
+
 ADD root /
 
 EXPOSE 8080
