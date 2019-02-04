@@ -1,3 +1,4 @@
 #!/usr/bin/with-contenv sh
 
 ambari-agent start
+tail -f /var/log/ambari-agent/ambari-agent.log
